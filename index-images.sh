@@ -9,13 +9,16 @@ IMAGES="$(find $INBOX -type f -printf %f\\n | grep -v PLACEHOLDER | egrep -iv '.
 
 # Loop through all the non-raw images
 while read -r line; do
+
   # Get the SHA of the non-raw image
   filename=$(basename "$line")
   extension="${filename##*.}"
   filename="${filename%.*}"
   SHA="$(sha1sum "$(echo $INBOX/$line)" | awk '{print $1}')"
+
   cp -v "$INBOX/$line" processed/$SHA.$extension
-  RAW_IMAGES="$(find $inbox -name "$filename*" -type f -printf %f\\n | grep -v placeholder | egrep -i '.raw$')"
+  RAW_IMAGES="$(find $inbox -name "$filename*" -type f -printf %f\\n | egrep -i '.raw$')"
+
   while read -r line; do
     if [ $line ] ; then 
       filename=$(basename "$line")
@@ -24,7 +27,5 @@ while read -r line; do
       cp -v "$INBOX/$line" processed/$SHA.$extension
     fi
   done <<< "$RAW_IMAGES"
-  #if [ $RAW_IMAGES ] ; then echo hit ; fi
-
 
 done <<< "$IMAGES"
