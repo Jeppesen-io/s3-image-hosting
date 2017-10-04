@@ -2,6 +2,7 @@
 
 # Where images are dropped
 INBOX='inbox'
+mkdir -p processed
 
 # Find all the non-raw images
 IMAGES="$(find $INBOX -type f -printf %f\\n | grep -v PLACEHOLDER | egrep -iv '.raw$')"
