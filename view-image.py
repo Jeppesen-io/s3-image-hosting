@@ -4,9 +4,10 @@ import wx, sys
 class FooApp(wx.App):
 
 	# called when the 'change' button is pressed
-	def changeImage(self,event):
-		img = wx.Image("foo.jpg")
-		self.image = wx.StaticBitmap(self.panel, wx.ID_ANY, wx.BitmapFromImage(img))
+	def ret1(self,event):
+                sys.exit(1)
+	def ret0(self,event):
+                sys.exit(0)
 
 	def __init__(self):
 		# setup code for the window
@@ -20,9 +21,12 @@ class FooApp(wx.App):
 
 		# create a Sizer to hold one (or more) button
 		self.buttons = wx.BoxSizer(wx.VERTICAL)
-		self.changeButton = wx.Button(self.panel, -1, "Change")
-		self.changeButton.Bind(wx.EVT_BUTTON,self.changeImage)
+		self.changeButton = wx.Button(self.panel, -1, "No")
+		self.changeButton.Bind(wx.EVT_BUTTON,self.ret1)
+		self.changeButton2 = wx.Button(self.panel, -1, "Yes")
+		self.changeButton2.Bind(wx.EVT_BUTTON,self.ret0)
 		self.buttons.Add(self.changeButton)
+		self.buttons.Add(self.changeButton2)
 
 		self.mainSizer = wx.BoxSizer(wx.VERTICAL)
 		self.mainSizer.Add(self.image)
