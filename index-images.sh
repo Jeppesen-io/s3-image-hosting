@@ -5,7 +5,7 @@ INBOX='inbox'
 mkdir -p processed
 
 # Find all the non-raw images
-IMAGES="$(find $INBOX -type f -printf %f\\n | grep -v PLACEHOLDER | egrep -iv '.raw$')"
+IMAGES="$(find $INBOX -type f | grep -v PLACEHOLDER | egrep -iv '.raw$' | sed 's|inbox/||g')"
 
 # Loop through all the non-raw images
 while read -r line; do
