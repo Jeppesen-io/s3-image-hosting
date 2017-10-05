@@ -33,13 +33,4 @@ while read -r line; do
       fi
     done <<< "$RAW_IMAGES"
   fi
-   echo $?
-
-
 done <<< "$IMAGES"
-
-
-#TODO
-
-  # Sort images into folders by date
-  # Upload the s3 with never expire header

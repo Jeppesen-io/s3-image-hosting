@@ -17,7 +17,7 @@ class FooApp(wx.App):
 
 		# load an image
 		img = wx.Image(sys.argv[1])
-		self.image = wx.StaticBitmap(self.panel, wx.ID_ANY, wx.BitmapFromImage(img))
+		self.image = wx.StaticBitmap(self.panel, wx.ID_ANY, wx.Bitmap(img))
 
 		# create a Sizer to hold one (or more) button
 		self.buttons = wx.BoxSizer(wx.VERTICAL)
@@ -29,8 +29,8 @@ class FooApp(wx.App):
 		self.buttons.Add(self.changeButton2)
 
 		self.mainSizer = wx.BoxSizer(wx.VERTICAL)
-		self.mainSizer.Add(self.image)
 		self.mainSizer.Add(self.buttons)
+		self.mainSizer.Add(self.image)
 
 		# more generic setupcode
 		self.panel.SetSizer(self.mainSizer)
