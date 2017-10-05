@@ -1,0 +1,10 @@
+Plans:
+
+1. Copy images from flash
+2. For each image:
+  a. View
+  b. Keep or delete
+  c. Rename image to shasum of jpeg. Rename raw image to match
+  d. Move image to processed, sorted by EXIF data tag (/yyyy/mm/dd/shasum.[jpg|nef])
+  e. sync to s3
+
